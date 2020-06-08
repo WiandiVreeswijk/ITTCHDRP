@@ -63,80 +63,82 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Asset Store\LowMan\Scripts\ThirdPersonCharacter.cs" />
+    <Compile Include="Assets\Asset Store\MadeByProfessorOakie\SimpleSonarShader\Example\SimpleSonarShader_ExampleCollision.cs" />
+    <Compile Include="Assets\Asset Store\MadeByProfessorOakie\SimpleSonarShader\Example\SimpleSonarShader_ExampleConfigureChildren.cs" />
+    <Compile Include="Assets\Asset Store\MadeByProfessorOakie\SimpleSonarShader\SimpleSonarShader_Object.cs" />
+    <Compile Include="Assets\Asset Store\MadeByProfessorOakie\SimpleSonarShader\SimpleSonarShader_Parent.cs" />
     <Compile Include="Assets\Asset Store\Marcos Schultz\MSAdvancedCameraController\Example\VehicleControllerMSACC.cs" />
     <Compile Include="Assets\Asset Store\Marcos Schultz\MSAdvancedCameraController\Scripts\MobileSystems\MSACCButtons.cs" />
     <Compile Include="Assets\Asset Store\Marcos Schultz\MSAdvancedCameraController\Scripts\MobileSystems\MSACCJoystick.cs" />
     <Compile Include="Assets\Asset Store\Marcos Schultz\MSAdvancedCameraController\Scripts\MobileSystems\MSACCMobileInputs.cs" />
-    <Compile Include="Assets\LowMan\Scripts\ThirdPersonCharacter.cs" />
-    <Compile Include="Assets\MadeByProfessorOakie\SimpleSonarShader\Example\SimpleSonarShader_ExampleCollision.cs" />
-    <Compile Include="Assets\MadeByProfessorOakie\SimpleSonarShader\Example\SimpleSonarShader_ExampleConfigureChildren.cs" />
-    <Compile Include="Assets\MadeByProfessorOakie\SimpleSonarShader\SimpleSonarShader_Object.cs" />
-    <Compile Include="Assets\MadeByProfessorOakie\SimpleSonarShader\SimpleSonarShader_Parent.cs" />
+    <Compile Include="Assets\Scripts\Civilian\CivilianMovement.cs" />
+    <Compile Include="Assets\Scripts\Civilian\CivilianSpawner.cs" />
     <Compile Include="Assets\Scripts\MSCameraController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Player\speakerInteraction.cs" />
     <Compile Include="Assets\Scripts\SpeakerAura.cs" />
-    <None Include="Assets\MadeByProfessorOakie\SimpleSonarShader\Readme.txt" />
+    <None Include="Assets\Asset Store\MadeByProfessorOakie\SimpleSonarShader\Readme.txt" />
     <None Include="Assets\Asset Store\Marcos Schultz\MSAdvancedCameraController\UpdateNotes.txt" />
     <None Include="Assets\Asset Store\Simple city plain\Read_me.txt" />
-    <None Include="Assets\SkySerie Freebie\Hdri setup.txt" />
-    <None Include="Assets\MadeByProfessorOakie\SimpleSonarShader\SimpleSonarShader.shader" />
+    <None Include="Assets\Asset Store\SkySerie Freebie\Hdri setup.txt" />
+    <None Include="Assets\Asset Store\MadeByProfessorOakie\SimpleSonarShader\SimpleSonarShader.shader" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITTCHDRP/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITTCHDRP/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
-      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
+      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITTCHDRP/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
-      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITTCHDRP/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualEffectGraph.Runtime">
-      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.VisualEffectGraph.Runtime.dll</HintPath>
+      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITTCHDRP/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.VisualEffectGraph.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITTCHDRP/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITTCHDRP/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITTCHDRP/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITTCHDRP/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.HighDefinition.Runtime">
-      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
+      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITTCHDRP/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITTCHDRP/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITTCHDRP/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.HighDefinition.Config.Runtime">
-      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Config.Runtime.dll</HintPath>
+      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITTCHDRP/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Config.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualEffectGraph.Editor">
-      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.VisualEffectGraph.Editor.dll</HintPath>
+      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITTCHDRP/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.VisualEffectGraph.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
-      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
+      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITTCHDRP/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.HighDefinition.Editor">
-      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Editor.dll</HintPath>
+      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITTCHDRP/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.RenderPipelines.HighDefinition.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
-      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITTCHDRP/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITTCHDRP/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/Wiandi Vreeswijk/Documents/ITTCHDRP/ITCHDRP/ITCHDRP/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
