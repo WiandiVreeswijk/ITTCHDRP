@@ -684,7 +684,7 @@ public class MSCameraController : MonoBehaviour {
 			RaycastHit hitCamOTS;
 			if(orbitalAtiv == true){
 				float _minDistance = CameraSettings.OrbitalThatFollows.minDistance;
-				if (Physics.Linecast (targetTransform.position, cameras [index]._camera.transform.position, out hitCamOTS)) {
+				if (Physics.Linecast (targetTransform.position, cameras [index]._camera.transform.position, out hitCamOTS, mask)) {
 					if (!CameraSettings.OrbitalThatFollows.ignoreCollision) {
 						distanceFromOrbitalCamera [index] = Vector3.Distance (targetTransform.position, hitCamOTS.point);
 						_minDistance = Mathf.Clamp (distanceFromOrbitalCamera [index], _minDistance * 0.5f, CameraSettings.OrbitalThatFollows.maxDistance);
@@ -702,10 +702,10 @@ public class MSCameraController : MonoBehaviour {
 				cameras [index]._camera.transform.rotation = Quaternion.Lerp (camRot, quaterToEuler, Time.deltaTime * 5.0f * timeScaleSpeed);
 				cameras [index]._camera.transform.position = Vector3.Lerp (_camCurrentPos, _camNewPos, Time.deltaTime * 5.0f * timeScaleSpeed);
 			} else {
-				if (!Physics.Linecast (targetTransform.position, originalPosition [index].transform.position)) {
+				if (!Physics.Linecast (targetTransform.position, originalPosition [index].transform.position, mask)) {
 					cameras [index]._camera.transform.position = Vector3.Lerp (cameras [index]._camera.transform.position, originalPosition [index].transform.position, Time.deltaTime * CameraSettings.OrbitalThatFollows.displacementSpeed);
 				}
-				else if(Physics.Linecast(targetTransform.position, originalPosition [index].transform.position,out hitCamOTS)){
+				else if(Physics.Linecast(targetTransform.position, originalPosition [index].transform.position,out hitCamOTS, mask)){
 					if (CameraSettings.OrbitalThatFollows.ignoreCollision) {
 						cameras [index]._camera.transform.position = Vector3.Lerp (cameras [index]._camera.transform.position, originalPosition [index].transform.position, Time.deltaTime * CameraSettings.OrbitalThatFollows.displacementSpeed);
 					} 

@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask whatCanBeClickedOn;
     public GameObject mouseTarget;
 
+    public float moveSpeed, acceleration;
+
     [NonSerialized]
     public bool interaction;
 
@@ -17,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        agent.speed = moveSpeed;
+        agent.acceleration = acceleration;
+
     }
 
     void Update()
@@ -43,7 +48,6 @@ public class PlayerMovement : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 100, whatCanBeClickedOn))
             {
-
                 agent.SetDestination(hit.point);
                 mouseTarget.SetActive(true);
                 Vector3 point = hit.point;
