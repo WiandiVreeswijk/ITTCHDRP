@@ -8,14 +8,13 @@ public class CivilianSpawner : MonoBehaviour
     public int maxSpawnCount = 50;
     public float SpawnRadius = 20f;
 
-    public GameObject offset;
    
     private IEnumerator Start()
     {
         for (int i = 0; i < maxSpawnCount; i++)
         {
             //pick random spawn position
-            Vector3 spawnPosition = offset.transform.position + (Random.insideUnitSphere * SpawnRadius);
+            Vector3 spawnPosition = transform.position + (Random.insideUnitSphere * SpawnRadius);
             spawnPosition.y = 0;
             //with random rotation
             Instantiate(civilian, spawnPosition, Quaternion.Euler(0, Random.value * 360, 0));
