@@ -37,6 +37,15 @@ public class PlayerMovement : MonoBehaviour
 
         //rb.AddForce(forward + right);
         character.Move(forward + right, false, false);
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            interaction = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.E))
+        {
+            interaction = false;
+        }
     }
 }
 
