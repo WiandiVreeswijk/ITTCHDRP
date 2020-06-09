@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityStandardAssets.Characters.ThirdPerson;
 
 public class PlayerMovement : MonoBehaviour
 {
     private NavMeshAgent agent;
     public LayerMask whatCanBeClickedOn;
     public GameObject mouseTarget;
+
+    public ThirdPersonCharacter character;
 
     public float moveSpeed, acceleration;
 
@@ -22,6 +25,11 @@ public class PlayerMovement : MonoBehaviour
         agent.speed = moveSpeed;
         agent.acceleration = acceleration;
 
+        agent.updatePosition = true;
+        agent.updateRotation = false;
+
+        character = this.GetComponent<ThirdPersonCharacter>();
+
     }
 
     void Update()
@@ -30,6 +38,11 @@ public class PlayerMovement : MonoBehaviour
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
             mouseTarget.SetActive(false);
+            character.Move(Vector3.zero, false, false);
+        }
+        else
+        {
+            character.Move(agent.desiredVelocity, false, false);
         }
         
 
@@ -53,6 +66,8 @@ public class PlayerMovement : MonoBehaviour
                 Vector3 point = hit.point;
                 point.y = 0.2f;
                 mouseTarget.transform.position = point;
+
+                
             }
         }
     }
