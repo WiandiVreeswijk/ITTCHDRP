@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public CinemachineFreeLook camera;
     public float speed = 10f;
 
+    private float targetValueX = 0;
+    private float targetValueY = 0;
 
     [NonSerialized]
     public bool interaction;
@@ -46,6 +48,21 @@ public class PlayerMovement : MonoBehaviour
         {
             interaction = false;
         }
+        if (Input.GetMouseButton(1))
+        {
+
+            targetValueX = Input.GetAxis("Mouse X");
+            targetValueY = Input.GetAxis("Mouse Y");
+
+        }
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            targetValueX = 0;
+            targetValueY = 0;
+        }
+        camera.m_XAxis.m_InputAxisValue = Mathf.Lerp(camera.m_XAxis.m_InputAxisValue, targetValueX, Time.deltaTime * 5);
+        camera.m_YAxis.m_InputAxisValue = Mathf.Lerp(camera.m_YAxis.m_InputAxisValue, targetValueY, Time.deltaTime * 5);
     }
 }
 
