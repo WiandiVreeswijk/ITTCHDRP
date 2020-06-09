@@ -7,13 +7,11 @@ using UnityStandardAssets.Characters.ThirdPerson;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private NavMeshAgent agent;
-    public LayerMask whatCanBeClickedOn;
-    public GameObject mouseTarget;
 
     public ThirdPersonCharacter character;
 
-    public float moveSpeed, acceleration;
+    public float speed = 10f;
+
 
     [NonSerialized]
     public bool interaction;
@@ -21,12 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
-        agent.speed = moveSpeed;
-        agent.acceleration = acceleration;
 
-        agent.updatePosition = true;
-        agent.updateRotation = false;
 
         character = this.GetComponent<ThirdPersonCharacter>();
 
@@ -34,41 +27,40 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        //removes mouse target after reaching destination
-        if (agent.remainingDistance <= agent.stoppingDistance)
-        {
-            mouseTarget.SetActive(false);
-            character.Move(Vector3.zero, false, false);
-        }
-        else
-        {
-            character.Move(agent.desiredVelocity, false, false);
-        }
-        
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
 
-        if(Input.GetMouseButtonDown(1))
-        {
-            interaction = true;
-        }
-        else if(Input.GetMouseButtonUp(1))
-        {
-            interaction = false;
-        }
+        Vector3 forward = transform.forward * vertical * speed * Time.deltaTime;
+        Vector3 right = transform.right * horizontal * speed * Time.deltaTime;
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100, whatCanBeClickedOn))
-            {
-                agent.SetDestination(hit.point);
-                mouseTarget.SetActive(true);
-                Vector3 point = hit.point;
-                point.y = 0.2f;
-                mouseTarget.transform.position = point;
-
-                
-            }
-        }
+        character.Move(forward + right,false,false);
     }
 }
+
+
+/*
+if(Input.GetMouseButtonDown(1))
+{
+    interaction = true;
+}
+else if(Input.GetMouseButtonUp(1))
+{
+    interaction = false;
+}
+
+if (Input.GetMouseButtonDown(0))
+{
+    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    RaycastHit hit;
+    if (Physics.Raycast(ray, out hit, 100, whatCanBeClickedOn))
+    {
+        agent.SetDestination(hit.point);
+        mouseTarget.SetActive(true);
+        Vector3 point = hit.point;
+        point.y = 0.2f;
+        mouseTarget.transform.position = point;
+
+
+    }
+}
+*/
