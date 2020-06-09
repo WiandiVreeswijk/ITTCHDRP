@@ -9,11 +9,13 @@ public class CivilianMovement : MonoBehaviour
     public ThirdPersonCharacter character;
     private GameObject player;
     private NavMeshAgent agent;
+    private SpeakerAura speakerAura;
 
     public enum State
     {
         WANDER,
-        FOLLOW
+        FOLLOW,
+        DANCE
     }
 
     public State state;
@@ -44,7 +46,7 @@ public class CivilianMovement : MonoBehaviour
 
         StartCoroutine("FSM");
 
-        agent.stoppingDistance = Random.Range(1.5f, 3f);
+        agent.stoppingDistance = Random.Range(0.3f, 1.5f);
 
         Vector2 pOUC = Random.insideUnitCircle.normalized * 3;
         pointOnUnitCircle = new Vector3(pOUC.x, 0, pOUC.y);
@@ -61,6 +63,9 @@ public class CivilianMovement : MonoBehaviour
                     break;
                 case State.FOLLOW:
                     Follow();
+                    break;
+                case State.DANCE:
+                    Dance();
                     break;
             }
             yield return null/*new WaitForSeconds(1.0f)*/;
@@ -91,11 +96,13 @@ public class CivilianMovement : MonoBehaviour
         {
             agent.SetDestination(waypoints[waypointInd].transform.position);
             character.Move(agent.desiredVelocity, false, false);
-        } else if(Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) <= 3.5)
+        }
+        else if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) <= 3.5)
         {
             waypointInd = Random.Range(0, waypoints.Length);
 
-        } else
+        }
+        else
         {
             character.Move(Vector3.zero, false, false);
             agent.velocity = Vector3.zero;
@@ -103,15 +110,38 @@ public class CivilianMovement : MonoBehaviour
     }
     void Follow()
     {
+        if (agent.enabled == false)
+        {
+            character.Move(Vector3.zero, false, false);
+            return;
+        }
         agent.speed = followSpeed;
         agent.SetDestination(GetTargetDest());
-        character.Move(agent.desiredVelocity, false, false);
+
+        if (agent.desiredVelocity.magnitude <= 0.01f)
+        {
+            Dance();
+        }
+        else character.Move(agent.desiredVelocity, false, false);
+    }
+
+    void Dance()
+    {
+        //agent.isStopped = true;
+        if (speakerAura != null)
+        {
+            if (speakerAura.IsThisFrameABeat())
+            {
+                character.Move(Vector3.zero, false, true);
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "MusicDome")
         {
+            speakerAura = other.transform.parent.GetComponent<SpeakerAura>();
             state = CivilianMovement.State.FOLLOW;
         }
     }

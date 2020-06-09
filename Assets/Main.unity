@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3279825, g: 0.387561, b: 0.4812485, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5289,7 +5289,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669033642}
-  m_LocalRotation: {x: -0.2410132, y: -0.000000008538292, z: 0.0000000028333773, w: -0.97052187}
+  m_LocalRotation: {x: -0.2410132, y: 0.000000008160878, z: -0.0000000013135866, w: -0.97052187}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9459,7 +9459,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1097797484}
-  m_LocalRotation: {x: 0.16105409, y: -0.00000002555877, z: 0.000000043375337, w: 0.9869456}
+  m_LocalRotation: {x: 0.1610541, y: -0.000000025558789, z: 0.000000043375376, w: 0.9869456}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -11093,7 +11093,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.03
+  m_Radius: 2.7
   m_Center: {x: 0.00000023841864, y: -0.21, z: 0.00000068545336}
 --- !u!1001 &1259371174
 PrefabInstance:
@@ -12645,7 +12645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   civilian: {fileID: 6429338139123205340, guid: c1d3c191919323e4d9b1c34c5223a92a,
     type: 3}
-  maxSpawnCount: 50
+  maxSpawnCount: 500
   SpawnRadius: 40
 --- !u!4 &1413799616
 Transform:
@@ -17085,7 +17085,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1968908721}
-  m_LocalRotation: {x: 0.19315314, y: -0.00000001240326, z: 0.00000006300534, w: 0.9811687}
+  m_LocalRotation: {x: 0.19315314, y: -0.000000012403264, z: 0.00000006300538, w: 0.9811687}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -23199,7 +23199,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5053554249599454183}
-  m_LocalRotation: {x: 0.16105416, y: -0.000000037972335, z: 0.0000000061964944, w: 0.98694557}
+  m_LocalRotation: {x: 0.16105418, y: -0.000000037972356, z: 0.0000000061964984, w: 0.98694557}
   m_LocalPosition: {x: -8.4, y: 4.22, z: -8.610001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -23551,6 +23551,7 @@ MonoBehaviour:
   m_MoveSpeedMultiplier: 1
   m_AnimSpeedMultiplier: 1
   m_GroundCheckDistance: 0.2
+  m_IsGrounded: 0
 --- !u!81 &5053554249752725499
 AudioListener:
   m_ObjectHideFlags: 0

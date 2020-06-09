@@ -20,6 +20,8 @@ public class SpeakerAura : MonoBehaviour
     [SerializeField]
     private float sizeDecrement = 0.001f;
 
+    private bool isThisFrameABeat = false;
+
     void Start()
     {
         bpmInterval = 60.0f / BPM;
@@ -29,11 +31,13 @@ public class SpeakerAura : MonoBehaviour
     void OnBeat()
     {
         aura.transform.localScale += new Vector3(sizeIncrement, sizeIncrement, sizeIncrement);
+        isThisFrameABeat = true;
     }
 
 
     void Update()
     {
+        isThisFrameABeat = false;
         float x = aura.transform.localScale.x;
         if (x > goalSize)
         {
@@ -59,5 +63,10 @@ public class SpeakerAura : MonoBehaviour
             OnBeat();
             previousTime += bpmInterval;
         }
+    }
+
+    public bool IsThisFrameABeat()
+    {
+        return isThisFrameABeat;
     }
 }
