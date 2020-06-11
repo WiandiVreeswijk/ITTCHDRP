@@ -7,15 +7,16 @@ public class CivilianMovement : MonoBehaviour
 {
 
     public ThirdPersonCharacter character;
-    private GameObject player;
+    private GameObject player, dancefloor;
     private NavMeshAgent agent;
     private SpeakerAura speakerAura;
+    private speakerInteraction speakerInteraction;
 
     public enum State
     {
         WANDER,
         FOLLOW,
-        DANCE
+        DANCEFLOOR
     }
 
     public State state;
@@ -32,8 +33,11 @@ public class CivilianMovement : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        dancefloor = GameObject.FindGameObjectWithTag("Dancefloor");
+
         agent = this.GetComponent<NavMeshAgent>();
         character = this.GetComponent<ThirdPersonCharacter>();
+        speakerInteraction = FindObjectOfType<speakerInteraction>();
 
         agent.updatePosition = true;
         agent.updateRotation = false;
@@ -46,7 +50,6 @@ public class CivilianMovement : MonoBehaviour
 
         StartCoroutine("FSM");
 
-        agent.stoppingDistance = Random.Range(0.3f, 1.5f);
 
         Vector2 pOUC = Random.insideUnitCircle.normalized * 3;
         pointOnUnitCircle = new Vector3(pOUC.x, 0, pOUC.y);
@@ -64,8 +67,8 @@ public class CivilianMovement : MonoBehaviour
                 case State.FOLLOW:
                     Follow();
                     break;
-                case State.DANCE:
-                    Dance();
+                case State.DANCEFLOOR:
+                    Dancefloor();
                     break;
             }
             yield return null/*new WaitForSeconds(1.0f)*/;
@@ -91,6 +94,7 @@ public class CivilianMovement : MonoBehaviour
 
     void Wander()
     {
+        agent.stoppingDistance = Random.Range(1f, 3f);
         agent.speed = wanderSpeed;
         if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) >= 3.5)
         {
@@ -110,19 +114,49 @@ public class CivilianMovement : MonoBehaviour
     }
     void Follow()
     {
+        agent.stoppingDistance = Random.Range(0.5f, 3f);
         if (agent.enabled == false)
         {
             character.Move(Vector3.zero, false, false);
             return;
         }
         agent.speed = followSpeed;
-        agent.SetDestination(GetTargetDest());
+        agent.SetDestination(GetTargetDest() + pointOnUnitCircle);
 
         if (agent.desiredVelocity.magnitude <= 0.01f)
         {
             Dance();
         }
         else character.Move(agent.desiredVelocity, false, false);
+
+        if (!speakerInteraction.isPickedUp)
+        {
+            state = CivilianMovement.State.DANCEFLOOR;
+        }
+    }
+
+    void Dancefloor()
+    {
+        agent.stoppingDistance = Random.Range(3f, 7f);
+        if (agent.enabled == false)
+        {
+            character.Move(Vector3.zero, false, false);
+            return;
+        }
+        agent.speed = followSpeed;
+        agent.SetDestination(dancefloor.transform.position + pointOnUnitCircle);
+        if (agent.desiredVelocity.magnitude <= 0.01f)
+        {
+            Dance();
+        }
+        else
+        {
+            character.Move(agent.desiredVelocity, false, false);
+        }
+        if (speakerInteraction.isPickedUp)
+        {
+            state = CivilianMovement.State.FOLLOW;
+        }
     }
 
     void Dance()
@@ -135,6 +169,12 @@ public class CivilianMovement : MonoBehaviour
                 character.Move(Vector3.zero, false, true);
             }
         }
+        /*
+        if (!speakerInteraction.isPickedUp)
+        {
+            agent.SetDestination(dancefloor.transform.position);
+        }
+        */
     }
 
     private void OnTriggerEnter(Collider other)
@@ -163,6 +203,4 @@ public class CivilianMovement : MonoBehaviour
         }
         return new Vector3(0, 0, 0);
     }
-
-
 }

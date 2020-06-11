@@ -1,11 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class speakerInteraction : MonoBehaviour
 {
     private float distance;
-    private bool isPickedUp;
+
+    [NonSerialized]
+    public bool isPickedUp;
 
     PlayerMovement playerMove;
     public GameObject target, speakerHolder;
