@@ -7,16 +7,18 @@ public class CivilianMovement : MonoBehaviour
 {
 
     public ThirdPersonCharacter character;
-    private GameObject player, dancefloor;
+    private GameObject player, dancefloor, fleeingpoint;
     private NavMeshAgent agent;
     private SpeakerAura speakerAura;
     private speakerInteraction speakerInteraction;
+    private PoliceMovement police;
 
     public enum State
     {
         WANDER,
         FOLLOW,
-        DANCEFLOOR
+        DANCEFLOOR,
+        FLEE
     }
 
     public State state;
@@ -25,7 +27,7 @@ public class CivilianMovement : MonoBehaviour
     public GameObject[] waypoints;
     private int waypointInd;
     public float wanderSpeed = 0.5f;
-
+    public float fleeSpeed = 3f;
     public float followSpeed = 1f;
 
     private Vector3 pointOnUnitCircle;
@@ -34,10 +36,12 @@ public class CivilianMovement : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         dancefloor = GameObject.FindGameObjectWithTag("Dancefloor");
+        fleeingpoint = GameObject.FindGameObjectWithTag("Fleeingpoint");
 
         agent = this.GetComponent<NavMeshAgent>();
         character = this.GetComponent<ThirdPersonCharacter>();
         speakerInteraction = FindObjectOfType<speakerInteraction>();
+        police = FindObjectOfType<PoliceMovement>();
 
         agent.updatePosition = true;
         agent.updateRotation = false;
@@ -51,7 +55,7 @@ public class CivilianMovement : MonoBehaviour
         StartCoroutine("FSM");
 
 
-        Vector2 pOUC = Random.insideUnitCircle.normalized * 3;
+        Vector2 pOUC = Random.insideUnitCircle.normalized * 2f;
         pointOnUnitCircle = new Vector3(pOUC.x, 0, pOUC.y);
     }
 
@@ -69,6 +73,9 @@ public class CivilianMovement : MonoBehaviour
                     break;
                 case State.DANCEFLOOR:
                     Dancefloor();
+                    break;
+                case State.FLEE:
+                    Flee();
                     break;
             }
             yield return null/*new WaitForSeconds(1.0f)*/;
@@ -114,7 +121,7 @@ public class CivilianMovement : MonoBehaviour
     }
     void Follow()
     {
-        agent.stoppingDistance = Random.Range(0.5f, 3f);
+        agent.stoppingDistance = Random.Range(0.6f, 2f);
         if (agent.enabled == false)
         {
             character.Move(Vector3.zero, false, false);
@@ -132,6 +139,11 @@ public class CivilianMovement : MonoBehaviour
         if (!speakerInteraction.isPickedUp)
         {
             state = CivilianMovement.State.DANCEFLOOR;
+        }
+
+        if (police.arrested)
+        {
+            state = CivilianMovement.State.FLEE;
         }
     }
 
@@ -156,6 +168,22 @@ public class CivilianMovement : MonoBehaviour
         if (speakerInteraction.isPickedUp)
         {
             state = CivilianMovement.State.FOLLOW;
+        }
+    }
+
+    void Flee()
+    {
+        agent.speed = fleeSpeed;
+        agent.SetDestination(fleeingpoint.transform.position);
+        character.Move(agent.desiredVelocity, false, false);
+        if (Vector3.Distance(this.transform.position, fleeingpoint.transform.position) >= 20)
+        {
+            agent.SetDestination(fleeingpoint.transform.position);
+            character.Move(agent.desiredVelocity, false, false);
+        }
+        else if (Vector3.Distance(this.transform.position, fleeingpoint.transform.position) <= 20)
+        {
+            state = CivilianMovement.State.WANDER;
         }
     }
 

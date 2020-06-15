@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: hologramMaterial
+  m_Name: SpeakerhologramMaterial
   m_Shader: {fileID: -6465566751694194690, guid: fbfcf9d0040f525468f7fa61d3314395,
     type: 3}
   m_ShaderKeywords: 

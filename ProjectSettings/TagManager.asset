@@ -9,6 +9,8 @@ TagManager:
   - MusicDome
   - WayPoint
   - Dancefloor
+  - PatrolPoint
+  - Fleeingpoint
   layers:
   - Default
   - TransparentFX
