@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.3279825, g: 0.387561, b: 0.4812485, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5349,7 +5349,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669033642}
-  m_LocalRotation: {x: -0.24518281, y: 0.011144061, z: -0.002818715, w: -0.96940875}
+  m_LocalRotation: {x: -0.24518283, y: 0.011144056, z: -0.0028187528, w: -0.96940875}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9549,7 +9549,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1097797484}
-  m_LocalRotation: {x: 0.20811908, y: -0.011243176, z: 0.0023924941, w: 0.978036}
+  m_LocalRotation: {x: 0.20811908, y: -0.011243176, z: 0.0023924944, w: 0.978036}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -12765,8 +12765,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   civilian: {fileID: 6429338139123205340, guid: c1d3c191919323e4d9b1c34c5223a92a,
     type: 3}
-  maxSpawnCount: 50
-  SpawnRadius: 40
+  maxSpawnCount: 100
+  SpawnRadius: 60
 --- !u!4 &1413799616
 Transform:
   m_ObjectHideFlags: 0
@@ -12775,7 +12775,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1413799614}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: 0, z: 10.6}
+  m_LocalPosition: {x: 46.4, y: 0, z: 29.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -17441,7 +17441,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1968908721}
-  m_LocalRotation: {x: 0.24205738, y: -0.011153039, z: 0.0027827197, w: 0.9701939}
+  m_LocalRotation: {x: 0.24205743, y: -0.011153036, z: 0.0027827187, w: 0.97019386}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -23138,7 +23138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aura: {fileID: 1257005799}
   source: {fileID: 2530111278168182828}
-  BPM: 125.5
+  BPM: 105
   goalSize: 65
   sizeIncrement: 1
   sizeDecrement: 0.001
@@ -23339,7 +23339,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c5363b11f13a2e0468a0428c00c80598, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 54edad4996dee7b48992c05948ac4115, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

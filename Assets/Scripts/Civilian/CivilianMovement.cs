@@ -194,7 +194,9 @@ public class CivilianMovement : MonoBehaviour
         {
             if (speakerAura.IsThisFrameABeat())
             {
+                character.m_JumpPower = Random.Range(4, 9);
                 character.Move(Vector3.zero, false, true);
+                
             }
         }
         /*
