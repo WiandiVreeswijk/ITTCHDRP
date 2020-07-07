@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityStandardAssets.Characters.ThirdPerson;
@@ -10,18 +11,22 @@ public class PoliceMovement : MonoBehaviour
     private NavMeshAgent agent;
     private GameObject player;
     private CivilianMovement civilian;
+
+    private speakerInteraction speakerint;
     public enum State
     {
         PATROL,
         CHASE
     }
 
-    public GameObject[] patrolPoints;
+    public List<GameObject> closePatrolPoints;
     private int patrolPointInd = 0;
 
     public State state;
     private bool alive;
 
+    [Range(1.0f, 150.0f)]
+    public float radius = 1.0f;
     public float patrolSpeed = 0.5f;
 
     public float chaseSpeed = 1f;
@@ -34,11 +39,20 @@ public class PoliceMovement : MonoBehaviour
         agent = this.GetComponent<NavMeshAgent>();
         character = this.GetComponent<ThirdPersonCharacter>();
         civilian = FindObjectOfType<CivilianMovement>();
+        speakerint = FindObjectOfType<speakerInteraction>();
+
+        GameObject[] patrolPoints = GameObject.FindGameObjectsWithTag("PatrolPoint");
+        closePatrolPoints = new List<GameObject>();
 
         agent.updatePosition = true;
         agent.updateRotation = false;
-
-        patrolPoints = GameObject.FindGameObjectsWithTag("PatrolPoint");
+        foreach (var patrolpoint in patrolPoints)
+        {
+            if (Vector3.Distance(transform.position, patrolpoint.transform.position) < radius)
+            {
+                closePatrolPoints.Add(patrolpoint);
+            }
+        }
         state = PoliceMovement.State.PATROL;
 
         alive = true;
@@ -66,15 +80,16 @@ public class PoliceMovement : MonoBehaviour
     {
         agent.stoppingDistance = Random.Range(0.5f, 1.5f);
         agent.speed = patrolSpeed;
-        if (Vector3.Distance(this.transform.position, patrolPoints[patrolPointInd].transform.position) >= 2)
+
+        if (Vector3.Distance(this.transform.position, closePatrolPoints[patrolPointInd].transform.position) >= 2)
         {
-            agent.SetDestination(patrolPoints[patrolPointInd].transform.position);
+            agent.SetDestination(closePatrolPoints[patrolPointInd].transform.position);
             character.Move(agent.desiredVelocity, false, false);
         }
-        else if (Vector3.Distance(this.transform.position, patrolPoints[patrolPointInd].transform.position) <= 2)
+        else if (Vector3.Distance(this.transform.position, closePatrolPoints[patrolPointInd].transform.position) <= 2)
         {
             patrolPointInd += 1;
-            if (patrolPointInd >= patrolPoints.Length)
+            if (patrolPointInd >= closePatrolPoints.Count)
             {
                 patrolPointInd = 0;
             }
@@ -84,6 +99,7 @@ public class PoliceMovement : MonoBehaviour
             character.Move(Vector3.zero, false, false);
             agent.velocity = Vector3.zero;
         }
+
     }
 
     void Chase()
@@ -97,6 +113,7 @@ public class PoliceMovement : MonoBehaviour
         if (other.tag == "MusicDome")
         {
             arrested = true;
+            //speakerint.isPickedUp = false;
         }
     }
     private void OnTriggerExit(Collider other)
@@ -110,5 +127,9 @@ public class PoliceMovement : MonoBehaviour
     void Inpursuit()
     {
 
+    }
+
+    private void OnDrawGizmos() {
+        Handles.CircleHandleCap(0, transform.position + new Vector3(0.0f, 1.0f, 0.0f), Quaternion.Euler(90.0f, 0.0f, 0.0f), radius, EventType.Repaint);
     }
 }

@@ -8,10 +8,11 @@ using Cinemachine;
 public class PlayerMovement : MonoBehaviour
 {
 
+
     public ThirdPersonCharacter character;
     private Rigidbody rb;
     public CinemachineFreeLook camera;
-    public float speed = 10f;
+    private float speed = 30f;
 
     private float targetValueX = 0;
     private float targetValueY = 0;
@@ -19,16 +20,25 @@ public class PlayerMovement : MonoBehaviour
     [NonSerialized]
     public bool interaction;
 
+    [NonSerialized]
+    public bool activateSpeaker = false;
+
+    private speakerInteraction speakerinteraction;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         character = this.GetComponent<ThirdPersonCharacter>();
         Cursor.lockState = CursorLockMode.Locked;
+
+        speakerinteraction = FindObjectOfType<speakerInteraction>();
     }
 
     void Update()
     {
+        print(speed);
+
         //camera.m_XAxis.Value = transform.rotation.y;
         //camera.m_XAxis
         float horizontal = Input.GetAxis("Horizontal");
@@ -40,6 +50,15 @@ public class PlayerMovement : MonoBehaviour
         //rb.AddForce(forward + right);
         character.Move(forward + right, false, false);
 
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = 1000f;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            speed = 30f;
+        }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             interaction = true;
@@ -48,6 +67,21 @@ public class PlayerMovement : MonoBehaviour
         {
             interaction = false;
         }
+        if (speakerinteraction.isPickedUp)
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                if (activateSpeaker)
+                {
+                    activateSpeaker = false;
+                }
+                else
+                {
+                    activateSpeaker = true;
+                }
+            }
+        }
+
         if (Input.GetMouseButton(1))
         {
 

@@ -13,7 +13,7 @@ public class speakerInteraction : MonoBehaviour
     PlayerMovement playerMove;
     public GameObject target, speakerHolder;
 
-    private Vector3 offsetPlayer = new Vector3(0, 1, 0);
+    private Vector3 offsetPlayer = new Vector3(0, 2.5f, 0);
     private Vector3 offsetSpeakerHolder = new Vector3(0, 1, 0);
     void Start()
     {
