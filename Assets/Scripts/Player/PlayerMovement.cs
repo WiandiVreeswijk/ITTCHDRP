@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     public ThirdPersonCharacter character;
     private Rigidbody rb;
     public CinemachineFreeLook camera;
+    public GameObject mouseTarget;
+    private NavMeshAgent agent;
+    public LayerMask whatCanBeClickedOn;
     private float speed = 30f;
 
     private float targetValueX = 0;
@@ -30,24 +33,29 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         character = this.GetComponent<ThirdPersonCharacter>();
-        Cursor.lockState = CursorLockMode.Locked;
+        agent = this.GetComponent<NavMeshAgent>();
+        //Cursor.lockState = CursorLockMode.Locked;
 
         speakerinteraction = FindObjectOfType<speakerInteraction>();
+
     }
 
     void Update()
     {
-        print(speed);
+        MoveWithMouse();
+        KeyboardInteraction();
+    }
 
-        //camera.m_XAxis.Value = transform.rotation.y;
-        //camera.m_XAxis
+
+    //WSAD movement
+    private void MoveWithKeyboard()
+    {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
         Vector3 forward = transform.forward * vertical * speed * Time.deltaTime;
         Vector3 right = transform.right * horizontal * speed * Time.deltaTime;
 
-        //rb.AddForce(forward + right);
         character.Move(forward + right, false, false);
 
         if (Input.GetKey(KeyCode.LeftShift))
@@ -56,9 +64,77 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            speed = 30f;
+            speed = 60f;
         }
 
+        if (Input.GetMouseButton(1))
+        {
+
+            targetValueX = Input.GetAxis("Mouse X");
+            targetValueY = Input.GetAxis("Mouse Y");
+
+        }
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            targetValueX = 0;
+            targetValueY = 0;
+        }
+        camera.m_XAxis.m_InputAxisValue = Mathf.Lerp(camera.m_XAxis.m_InputAxisValue, targetValueX, Time.deltaTime * 5);
+        camera.m_YAxis.m_InputAxisValue = Mathf.Lerp(camera.m_YAxis.m_InputAxisValue, targetValueY, Time.deltaTime * 5);
+    }
+
+    //Mouse Movement
+    private void MoveWithMouse()
+    {
+        if (agent.remainingDistance <= agent.stoppingDistance)
+        {
+            mouseTarget.SetActive(false);
+        }
+
+        if (agent.remainingDistance > agent.stoppingDistance)
+        {
+            character.Move(agent.desiredVelocity, false, false);
+        }
+        else
+        {
+            character.Move(Vector3.zero, false, false);
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 100, whatCanBeClickedOn))
+            {
+                agent.SetDestination(hit.point);
+                mouseTarget.SetActive(true);
+                Vector3 point = hit.point;
+                point.y = 0.2f;
+                mouseTarget.transform.position = point;
+            }
+        }
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            camera.m_YAxis.Value -= 0.02f;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            camera.m_YAxis.Value += 0.02f;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            camera.m_XAxis.Value += 1.5f;
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            camera.m_XAxis.Value -= 1.5f;
+        }
+    }
+
+    private void KeyboardInteraction()
+    {
         if (Input.GetKeyDown(KeyCode.E))
         {
             interaction = true;
@@ -82,48 +158,5 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButton(1))
-        {
-
-            targetValueX = Input.GetAxis("Mouse X");
-            targetValueY = Input.GetAxis("Mouse Y");
-
-        }
-
-        if (Input.GetMouseButtonUp(1))
-        {
-            targetValueX = 0;
-            targetValueY = 0;
-        }
-        camera.m_XAxis.m_InputAxisValue = Mathf.Lerp(camera.m_XAxis.m_InputAxisValue, targetValueX, Time.deltaTime * 5);
-        camera.m_YAxis.m_InputAxisValue = Mathf.Lerp(camera.m_YAxis.m_InputAxisValue, targetValueY, Time.deltaTime * 5);
     }
 }
-
-
-/*
-if(Input.GetMouseButtonDown(1))
-{
-    interaction = true;
-}
-else if(Input.GetMouseButtonUp(1))
-{
-    interaction = false;
-}
-
-if (Input.GetMouseButtonDown(0))
-{
-    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-    RaycastHit hit;
-    if (Physics.Raycast(ray, out hit, 100, whatCanBeClickedOn))
-    {
-        agent.SetDestination(hit.point);
-        mouseTarget.SetActive(true);
-        Vector3 point = hit.point;
-        point.y = 0.2f;
-        mouseTarget.transform.position = point;
-
-
-    }
-}
-*/
