@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     public ThirdPersonCharacter character;
     private Rigidbody rb;
-    public CinemachineFreeLook camera;
+    public CinemachineFreeLook outsideCamera, clubCamera;
     public GameObject mouseTarget;
     private NavMeshAgent agent;
     public LayerMask whatCanBeClickedOn;
@@ -44,6 +44,21 @@ public class PlayerMovement : MonoBehaviour
     {
         MoveWithMouse();
         KeyboardInteraction();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (clubCamera.Priority == 0)
+        {
+            if (other.gameObject.tag == "CameraTransitionPoint")
+            {
+                clubCamera.Priority = 2;
+            }
+        }
+        else if(other.gameObject.tag == "CameraTransitionPoint")
+        {
+            clubCamera.Priority = 0;
+        }
     }
 
 
@@ -80,8 +95,8 @@ public class PlayerMovement : MonoBehaviour
             targetValueX = 0;
             targetValueY = 0;
         }
-        camera.m_XAxis.m_InputAxisValue = Mathf.Lerp(camera.m_XAxis.m_InputAxisValue, targetValueX, Time.deltaTime * 5);
-        camera.m_YAxis.m_InputAxisValue = Mathf.Lerp(camera.m_YAxis.m_InputAxisValue, targetValueY, Time.deltaTime * 5);
+        outsideCamera.m_XAxis.m_InputAxisValue = Mathf.Lerp(outsideCamera.m_XAxis.m_InputAxisValue, targetValueX, Time.deltaTime * 5);
+        outsideCamera.m_YAxis.m_InputAxisValue = Mathf.Lerp(outsideCamera.m_YAxis.m_InputAxisValue, targetValueY, Time.deltaTime * 5);
     }
 
     //Mouse Movement
@@ -117,19 +132,19 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-            camera.m_YAxis.Value -= 0.02f;
+            outsideCamera.m_YAxis.Value -= 0.02f;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            camera.m_YAxis.Value += 0.02f;
+            outsideCamera.m_YAxis.Value += 0.02f;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            camera.m_XAxis.Value += 1.5f;
+            outsideCamera.m_XAxis.Value += 1.5f;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            camera.m_XAxis.Value -= 1.5f;
+            outsideCamera.m_XAxis.Value -= 1.5f;
         }
     }
 
