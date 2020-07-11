@@ -12,6 +12,7 @@ TagManager:
   - PatrolPoint
   - Fleeingpoint
   - CameraTransitionPoint
+  - PoliceDetectionRadius
   layers:
   - Default
   - TransparentFX

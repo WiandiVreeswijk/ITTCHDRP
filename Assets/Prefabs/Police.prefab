@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5341927306486643743}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: PoliceDetectionRadius
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4087431921236389119}
   m_LocalRotation: {x: -0, y: 0.4398399, z: -0, w: 0.8980763}
-  m_LocalPosition: {x: 0, y: -2.11, z: 0}
-  m_LocalScale: {x: 15.60613, y: 15.606125, z: 15.60613}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 15.60613, y: 1.2741464, z: 15.60613}
   m_Children: []
   m_Father: {fileID: 8348134096743048006}
   m_RootOrder: 1

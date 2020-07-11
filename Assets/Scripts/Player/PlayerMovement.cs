@@ -146,6 +146,7 @@ public class PlayerMovement : MonoBehaviour
         {
             outsideCamera.m_XAxis.Value -= 1.5f;
         }
+
     }
 
     private void KeyboardInteraction()
